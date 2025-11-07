@@ -29,20 +29,47 @@
 		8B251E382EBDF6A00027D01A /* Erekshe ÁlemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Erekshe ÁlemUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8B7F58842EBE010E00B96675 /* Exceptions for "Test" folder in "Erekshe Álem" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Erekshe ÁlemTests/Erekshe_A_lemTests.swift",
+				"Erekshe ÁlemUITests/Erekshe_A_lemUITests.swift",
+				"Erekshe ÁlemUITests/Erekshe_A_lemUITestsLaunchTests.swift",
+			);
+			target = 8B251E202EBDF69E0027D01A /* Erekshe Álem */;
+		};
+		8B7F58852EBE010E00B96675 /* Exceptions for "Test" folder in "Erekshe ÁlemTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Erekshe ÁlemTests/Erekshe_A_lemTests.swift",
+			);
+			target = 8B251E2D2EBDF6A00027D01A /* Erekshe ÁlemTests */;
+		};
+		8B7F588B2EBE011100B96675 /* Exceptions for "Test" folder in "Erekshe ÁlemUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Erekshe ÁlemUITests/Erekshe_A_lemUITests.swift",
+				"Erekshe ÁlemUITests/Erekshe_A_lemUITestsLaunchTests.swift",
+			);
+			target = 8B251E372EBDF6A00027D01A /* Erekshe ÁlemUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8B251E232EBDF69E0027D01A /* Erekshe Álem */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Erekshe Álem";
 			sourceTree = "<group>";
 		};
-		8B251E312EBDF6A00027D01A /* Erekshe ÁlemTests */ = {
+		8B7F58802EBE00FB00B96675 /* Test */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Erekshe ÁlemTests";
-			sourceTree = "<group>";
-		};
-		8B251E3B2EBDF6A00027D01A /* Erekshe ÁlemUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Erekshe ÁlemUITests";
+			exceptions = (
+				8B7F58842EBE010E00B96675 /* Exceptions for "Test" folder in "Erekshe Álem" target */,
+				8B7F58852EBE010E00B96675 /* Exceptions for "Test" folder in "Erekshe ÁlemTests" target */,
+				8B7F588B2EBE011100B96675 /* Exceptions for "Test" folder in "Erekshe ÁlemUITests" target */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +102,8 @@
 		8B251E182EBDF69E0027D01A = {
 			isa = PBXGroup;
 			children = (
+				8B7F58802EBE00FB00B96675 /* Test */,
 				8B251E232EBDF69E0027D01A /* Erekshe Álem */,
-				8B251E312EBDF6A00027D01A /* Erekshe ÁlemTests */,
-				8B251E3B2EBDF6A00027D01A /* Erekshe ÁlemUITests */,
 				8B251E222EBDF69E0027D01A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +135,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				8B251E232EBDF69E0027D01A /* Erekshe Álem */,
+				8B7F58802EBE00FB00B96675 /* Test */,
 			);
 			name = "Erekshe Álem";
 			packageProductDependencies = (
@@ -130,9 +157,6 @@
 			dependencies = (
 				8B251E302EBDF6A00027D01A /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				8B251E312EBDF6A00027D01A /* Erekshe ÁlemTests */,
-			);
 			name = "Erekshe ÁlemTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +176,6 @@
 			);
 			dependencies = (
 				8B251E3A2EBDF6A00027D01A /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8B251E3B2EBDF6A00027D01A /* Erekshe ÁlemUITests */,
 			);
 			name = "Erekshe ÁlemUITests";
 			packageProductDependencies = (
