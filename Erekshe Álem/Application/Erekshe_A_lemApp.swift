@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Login
 
 @main
 struct Erekshe_A_lemApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginCoordinator(dependencies: .init())
         }
     }
 }

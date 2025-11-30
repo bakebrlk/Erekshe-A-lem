@@ -20,15 +20,102 @@ public struct LoginView: View {
             )
         )
     }
-
+    
     public var body: some View {
         displayBody
     }
-
+    
     private var displayBody: some View {
-        Text("Hello World!")
-    }
+        VStack(spacing: 24) {
+            Text("Welcome Back")
+                .font(.largeTitle.bold())
+                .foregroundColor(viewModel.mainColor)
+            
+            Spacer()
+            
+            VStack(spacing: 16) {
+                TextField("Email", text: viewModel.getEmail())
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(12)
+                
+                
+                SecureField("Password", text: viewModel.getPassword())
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(12)
+            }
+            .padding(.horizontal, 24)
+            
+            
+            Button(action: {}) {
+                Text("Login")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(viewModel.mainColor)
+                    .foregroundColor(.white)
+                    .cornerRadius(16)
+            }
+            .padding(.horizontal, 24)
+            
+            
+            Button(action: {}) {
+                Text("Forgot password?")
+                    .foregroundColor(viewModel.mainColor)
+                    .font(.callout)
+            }
+            .padding(.top, -8)
+            
+            Spacer()
 
+            VStack(spacing: 16) {
+                Button(action: {}) {
+                    HStack {
+                        Image(systemName: "applelogo")
+                        Text("Login with Apple")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(16)
+                }
+                .padding(.horizontal, 24)
+                
+                
+                Button(action: {}) {
+                    HStack {
+                        Image(systemName: "globe")
+                        Text("Login with Google")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    )
+                }
+                .padding(.horizontal, 24)
+                
+                Button(action: {}) {
+                    Text("Create new account")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(viewModel.mainColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(16)
+                }
+                .padding(.horizontal, 24)
+            }
+            
+            
+            Spacer()
+        }
+        .background(Color(.systemBackground))
+    }
+    
 }
 
 extension LoginView {

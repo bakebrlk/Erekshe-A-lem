@@ -10,5 +10,6 @@
 import Foundation
 
 struct LoginModel {
-    // Добавьте свойства модели здесь
+    var email: String = ""
+    var password: String = ""
 }
