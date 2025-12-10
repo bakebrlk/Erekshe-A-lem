@@ -13,6 +13,7 @@
 		8B42058B2EE8F83B00FCA581 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B42058A2EE8F83B00FCA581 /* FirebaseAnalyticsCore */; };
 		8B42058D2EE8F83B00FCA581 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B42058C2EE8F83B00FCA581 /* FirebaseAuth */; };
 		8B42058F2EE8F83B00FCA581 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B42058E2EE8F83B00FCA581 /* FirebaseCore */; };
+		8B4205942EE90B0900FCA581 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4205932EE90B0900FCA581 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B4205862EE8F80300FCA581 /* PFirebase in Frameworks */,
+				8B4205942EE90B0900FCA581 /* Lottie in Frameworks */,
 				8B42058D2EE8F83B00FCA581 /* FirebaseAuth in Frameworks */,
 				8B4205842EE8F7FA00FCA581 /* Login in Frameworks */,
 				8B4205892EE8F83B00FCA581 /* FirebaseAnalytics in Frameworks */,
@@ -168,6 +170,7 @@
 				8B42058A2EE8F83B00FCA581 /* FirebaseAnalyticsCore */,
 				8B42058C2EE8F83B00FCA581 /* FirebaseAuth */,
 				8B42058E2EE8F83B00FCA581 /* FirebaseCore */,
+				8B4205932EE90B0900FCA581 /* Lottie */,
 			);
 			productName = "Erekshe Álem";
 			productReference = 8B251E212EBDF69E0027D01A /* Erekshe Álem.app */;
@@ -248,6 +251,7 @@
 			packageReferences = (
 				8B4205822EE8F7FA00FCA581 /* XCLocalSwiftPackageReference "Erekshe Álem/Features/Login" */,
 				8B4205872EE8F83B00FCA581 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8B4205922EE90B0900FCA581 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B251E222EBDF69E0027D01A /* Products */;
@@ -661,6 +665,14 @@
 				minimumVersion = 12.6.0;
 			};
 		};
+		8B4205922EE90B0900FCA581 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -691,6 +703,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B4205872EE8F83B00FCA581 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCore;
+		};
+		8B4205932EE90B0900FCA581 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B4205922EE90B0900FCA581 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -14,7 +14,7 @@ import PFirebase
 @MainActor
 final class LoginViewModel: ObservableObject {
     // MARK: Params
-    @Published private var model: LoginModel
+    @Published public var model: LoginModel
     private var firebase: CFirebase = CFirebase()
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
     
@@ -40,13 +40,17 @@ final class LoginViewModel: ObservableObject {
     
     // MARK: - Action
     func signWithEmail() {
+        model.state = .loading
         firebase.signInWithEmail(
             email: model.email,
-            password: model.password) { result in
+            password: model.password) { [weak self] result in
+                guard let self = self else { return }
                 switch result {
                 case .success(_):
+                    model.state = .display
                     print("Good Bro!")
                 case .failure(let failure):
+                    model.state = .error
                     print("Fail Bro:", failure.localizedDescription)
                 }
             }

@@ -4,31 +4,30 @@
 import PackageDescription
 
 let package = Package(
-    name: "PFirebase",
+    name: "CommonUI",
     platforms: [.iOS(.v16)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "PFirebase",
-            targets: ["PFirebase"]
+            name: "CommonUI",
+            targets: ["CommonUI"]
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "12.6.0"),
+        .package(url: "https://github.com/airbnb/lottie-ios.git", from: "4.5.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "PFirebase",
+            name: "CommonUI",
             dependencies: [
-                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk")
+                .product(name: "Lottie", package: "lottie-ios")
             ]
         ),
         .testTarget(
-            name: "PFirebaseTests",
-            dependencies: ["PFirebase"]
+            name: "CommonUITests",
+            dependencies: ["CommonUI"]
         ),
     ]
 )

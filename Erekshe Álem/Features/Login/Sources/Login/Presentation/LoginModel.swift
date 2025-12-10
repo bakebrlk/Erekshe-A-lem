@@ -8,8 +8,10 @@
 //
 
 import Foundation
+import PFirebase
 
 struct LoginModel {
     var email: String = ""
     var password: String = ""
+    var state: RequestState = .display
 }

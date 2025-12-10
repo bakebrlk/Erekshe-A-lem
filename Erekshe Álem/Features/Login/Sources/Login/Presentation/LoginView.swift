@@ -8,6 +8,7 @@
 //
 
 import SwiftUI
+import CommonUI
 
 public struct LoginView: View {
     
@@ -22,7 +23,11 @@ public struct LoginView: View {
     }
     
     public var body: some View {
-        displayBody
+        switch viewModel.model.state {
+            case .display: displayBody
+            case .loading: LoadingView()
+            case .error: Text("Error!!")
+        }
     }
     
     private var displayBody: some View {
@@ -48,7 +53,7 @@ public struct LoginView: View {
             .padding(.horizontal, 24)
             
             
-            Button(action: {}) {
+            Button(action: viewModel.signWithEmail) {
                 Text("Login")
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -99,7 +104,7 @@ public struct LoginView: View {
                 }
                 .padding(.horizontal, 24)
                 
-                Button(action: viewModel.signWithEmail) {
+                Button(action: {}) {
                     Text("Create new account")
                         .frame(maxWidth: .infinity)
                         .padding()

@@ -19,14 +19,15 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../../Foundation/Firebase")
+        .package(path: "../../Foundation/Firebase"),
+        .package(path: "../../Core/CommonUI")
     ],
     targets: [
         .target(
             name: "Login",
             dependencies: [
-//                "PFirebase"
-                .product(name: "PFirebase", package: "Firebase")
+                .product(name: "PFirebase", package: "Firebase"),
+                "CommonUI"
             ]
         ),
         .testTarget(
