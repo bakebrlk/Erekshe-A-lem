@@ -10,6 +10,8 @@ import Login
 
 @main
 struct Erekshe_A_lemApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             LoginCoordinator(dependencies: .init())

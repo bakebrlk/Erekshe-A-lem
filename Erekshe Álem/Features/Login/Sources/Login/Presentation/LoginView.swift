@@ -99,7 +99,7 @@ public struct LoginView: View {
                 }
                 .padding(.horizontal, 24)
                 
-                Button(action: {}) {
+                Button(action: viewModel.signWithEmail) {
                     Text("Create new account")
                         .frame(maxWidth: .infinity)
                         .padding()

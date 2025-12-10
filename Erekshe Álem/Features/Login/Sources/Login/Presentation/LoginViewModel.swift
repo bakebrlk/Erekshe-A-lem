@@ -9,11 +9,13 @@
 
 import SwiftUI
 import Combine
+import PFirebase
 
 @MainActor
 final class LoginViewModel: ObservableObject {
     // MARK: Params
     @Published private var model: LoginModel
+    private var firebase: CFirebase = CFirebase()
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
     
     // MARK: Init
@@ -34,6 +36,21 @@ final class LoginViewModel: ObservableObject {
             get: { self.model.password },
             set: { self.model.password = $0 }
         )
+    }
+    
+    // MARK: - Action
+    func signWithEmail() {
+        firebase.signInWithEmail(
+            email: model.email,
+            password: model.password) { result in
+                switch result {
+                case .success(_):
+                    print("Good Bro!")
+                case .failure(let failure):
+                    print("Fail Bro:", failure.localizedDescription)
+                }
+            }
+
     }
 }
 
