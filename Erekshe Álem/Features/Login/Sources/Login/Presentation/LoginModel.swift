@@ -14,4 +14,5 @@ struct LoginModel {
     var email: String = ""
     var password: String = ""
     var state: RequestState = .display
+    var currentNonce: String? = nil
 }

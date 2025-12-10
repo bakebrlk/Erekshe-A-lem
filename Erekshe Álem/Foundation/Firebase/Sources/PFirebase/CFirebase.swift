@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 public struct CFirebase {
     // MARK: - Params
@@ -14,12 +15,37 @@ public struct CFirebase {
     
     public init() {}
     
-    // MARK: - Functions
+    // MARK: - Auth Functions
     public func signInWithEmail(
         email: String,
         password: String,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         auth.signInWithEmail(email: email, password: password, completion: completion)
+    }
+    
+    public func signInWithApple(
+        idToken: String,
+        rawNonce: String,
+        fullName: PersonNameComponents?,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        auth.signInWithApple(
+            idToken: idToken,
+            rawNonce: rawNonce,
+            fullName: fullName,
+            completion: completion
+        )
+    }
+}
+
+// MARK: - Helper Extension for Sign with Apple
+extension CFirebase {
+    public func generateAppleSignInNonce() -> String {
+        auth.randomNonceString()
+    }
+    
+    public func hashAppleSignInNonceSHA256(_ nonce: String) -> String {
+        return auth.sha256(nonce)
     }
 }

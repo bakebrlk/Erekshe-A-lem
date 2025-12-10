@@ -10,6 +10,7 @@
 import SwiftUI
 import Combine
 import PFirebase
+import AuthenticationServices
 
 @MainActor
 final class LoginViewModel: ObservableObject {
@@ -54,7 +55,49 @@ final class LoginViewModel: ObservableObject {
                     print("Fail Bro:", failure.localizedDescription)
                 }
             }
-
+    }
+    
+    func signInWithAppleOnRequest(request: ASAuthorizationAppleIDRequest) {
+        let nonce = firebase.generateAppleSignInNonce()
+        model.currentNonce = nonce
+        
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = firebase.hashAppleSignInNonceSHA256(nonce)
+    }
+    
+    func signInWithAppleOnCompletion(result: Result<ASAuthorization, any Error>) {
+        switch result {
+        case .success(let authorization):
+            if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+                guard let nonce = model.currentNonce else {
+                    fatalError("Неверное состояние: получен обратный вызов входа, но запрос на вход не был отправлен.")
+                }
+                guard let appleIDToken = appleIDCredential.identityToken else {
+                    print("Не удалось получить токен идентификации Apple.")
+                    return
+                }
+                guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                    print("Не удалось преобразовать токен в строку.")
+                    return
+                }
+                
+                firebase.signInWithApple(
+                    idToken: idTokenString,
+                    rawNonce: nonce,
+                    fullName: appleIDCredential.fullName
+                ) { result in
+                    switch result {
+                    case .success:
+                        print("🎉 Успешный вход через Apple в Firebase!")
+                    case .failure(let error):
+                        print("❌ Ошибка при входе через Apple в Firebase: \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+        case .failure(let error):
+            print("❌ Ошибка при входе через Apple: \(error.localizedDescription)")
+        }
     }
 }
 

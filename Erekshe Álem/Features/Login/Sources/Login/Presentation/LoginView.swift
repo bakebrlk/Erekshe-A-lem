@@ -9,6 +9,7 @@
 
 import SwiftUI
 import CommonUI
+import AuthenticationServices
 
 public struct LoginView: View {
     
@@ -74,19 +75,12 @@ public struct LoginView: View {
             Spacer()
 
             VStack(spacing: 16) {
-                Button(action: {}) {
-                    HStack {
-                        Image(systemName: "applelogo")
-                        Text("Login with Apple")
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.black)
-                    .foregroundColor(.white)
-                    .cornerRadius(16)
-                }
+                SignInWithAppleButton(
+                    onRequest: { request in viewModel.signInWithAppleOnRequest(request: request) },
+                    onCompletion: { result in viewModel.signInWithAppleOnCompletion(result: result) }
+                )
+                .frame(maxWidth: .infinity, maxHeight: 52)
                 .padding(.horizontal, 24)
-                
                 
                 Button(action: {}) {
                     HStack {
