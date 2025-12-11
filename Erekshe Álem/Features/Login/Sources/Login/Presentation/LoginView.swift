@@ -54,7 +54,11 @@ public struct LoginView: View {
             .padding(.horizontal, 24)
             
             
-            Button(action: viewModel.signWithEmail) {
+            Button(action: {
+                Task {
+                    await viewModel.signWithEmail()
+                }
+            }) {
                 Text("Login")
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -77,7 +81,11 @@ public struct LoginView: View {
             VStack(spacing: 16) {
                 SignInWithAppleButton(
                     onRequest: { request in viewModel.signInWithAppleOnRequest(request: request) },
-                    onCompletion: { result in viewModel.signInWithAppleOnCompletion(result: result) }
+                    onCompletion: { result in
+                        Task {
+                            await viewModel.signInWithAppleOnCompletion(result: result)
+                        }
+                    }
                 )
                 .frame(maxWidth: .infinity, maxHeight: 52)
                 .padding(.horizontal, 24)
