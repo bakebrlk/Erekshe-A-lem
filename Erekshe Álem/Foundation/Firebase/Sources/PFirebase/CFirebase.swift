@@ -18,23 +18,20 @@ public final class CFirebase: Sendable {
     // MARK: - Auth Functions
     public func signInWithEmail(
         email: String,
-        password: String,
-        completion: @escaping (Result<Void, Error>) -> Void
-    ) {
-        auth.signInWithEmail(email: email, password: password, completion: completion)
+        password: String
+    ) async throws {
+        try await auth.signInWithEmail(email: email, password: password)
     }
     
     public func signInWithApple(
         idToken: String,
         rawNonce: String,
-        fullName: PersonNameComponents?,
-        completion: @escaping (Result<Void, Error>) -> Void
-    ) {
-        auth.signInWithApple(
+        fullName: PersonNameComponents?
+    ) async throws {
+        try await auth.signInWithApple(
             idToken: idToken,
             rawNonce: rawNonce,
-            fullName: fullName,
-            completion: completion
+            fullName: fullName
         )
     }
     

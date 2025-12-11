@@ -18,40 +18,24 @@ public final class CFirebaseAuth: Sendable {
     // MARK: - Email
     func signInWithEmail(
         email: String,
-        password: String,
-        completion: @escaping (Result<Void, Error>) -> Void
-    ) {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            print("User signed in successfully!")
-            completion(.success(()))
-        }
+        password: String
+    ) async throws {
+        try await Auth.auth().signIn(withEmail: email, password: password)
     }
     
     // MARK: - Apple
     func signInWithApple(
         idToken: String,
         rawNonce: String,
-        fullName: PersonNameComponents?,
-        completion: @escaping (Result<Void, Error>) -> Void
-    ) {
-        let credential = OAuthProvider.appleCredential(withIDToken: idToken,
-                                                       rawNonce: rawNonce,
-                                                       fullName: fullName)
+        fullName: PersonNameComponents?
+    ) async throws {
+        let credential = OAuthProvider.appleCredential(
+            withIDToken: idToken,
+            rawNonce: rawNonce,
+            fullName: fullName
+        )
         
-        Auth.auth().signIn(with: credential) { authResult, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            print("User signed in successfully with Apple!")
-            completion(.success(()))
-        }
+        try await Auth.auth().signIn(with: credential)
     }
     
     // MARK: - Google
@@ -59,8 +43,10 @@ public final class CFirebaseAuth: Sendable {
         idToken: String,
         accessToken: String
     ) async throws {
-        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                       accessToken: accessToken)
+        let credential = GoogleAuthProvider.credential(
+            withIDToken: idToken,
+            accessToken: accessToken
+        )
         try await Auth.auth().signIn(with: credential)
     }
 }

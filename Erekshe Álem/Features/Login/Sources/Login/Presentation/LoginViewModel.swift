@@ -41,21 +41,17 @@ final class LoginViewModel: ObservableObject {
     }
     
     // MARK: - Action
-    func signWithEmail() {
-        model.state = .loading
-        firebase.signInWithEmail(
-            email: model.email,
-            password: model.password) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(_):
-                    model.state = .display
-                    print("Good Bro!")
-                case .failure(let failure):
-                    model.state = .error
-                    print("Fail Bro:", failure.localizedDescription)
-                }
-            }
+    func signWithEmail() async {
+        do {
+            model.state = .loading
+            try await firebase.signInWithEmail(
+                email: model.email,
+                password: model.password
+            )
+            model.state = .display
+        } catch {
+            model.state = .error
+        }
     }
     
     // MARK: - Sign in with Apple functions
@@ -67,7 +63,7 @@ final class LoginViewModel: ObservableObject {
         request.nonce = firebase.hashAppleSignInNonceSHA256(nonce)
     }
     
-    func signInWithAppleOnCompletion(result: Result<ASAuthorization, any Error>) {
+    func signInWithAppleOnCompletion(result: Result<ASAuthorization, any Error>) async {
         switch result {
         case .success(let authorization):
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
@@ -83,17 +79,14 @@ final class LoginViewModel: ObservableObject {
                     return
                 }
                 
-                firebase.signInWithApple(
-                    idToken: idTokenString,
-                    rawNonce: nonce,
-                    fullName: appleIDCredential.fullName
-                ) { result in
-                    switch result {
-                    case .success:
-                        print("🎉 Успешный вход через Apple в Firebase!")
-                    case .failure(let error):
-                        print("❌ Ошибка при входе через Apple в Firebase: \(error.localizedDescription)")
-                    }
+                do {
+                    try await firebase.signInWithApple(
+                        idToken: idTokenString,
+                        rawNonce: nonce,
+                        fullName: appleIDCredential.fullName
+                    )
+                } catch {
+                    model.state = .error
                 }
             }
             
