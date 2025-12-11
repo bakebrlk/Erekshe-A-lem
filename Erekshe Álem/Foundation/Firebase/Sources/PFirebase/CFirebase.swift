@@ -35,12 +35,16 @@ public final class CFirebase: Sendable {
         )
     }
     
-    // MARK: - Google
     public func signInWithGoogle(
         idToken: String,
         accessToken: String
     ) async throws {
         try await auth.signInWithGoogle(idToken: idToken, accessToken: accessToken)
+    }
+    
+//    - Registry
+    public func signUpEmail(email: String, password: String) async throws {
+        try await auth.signUpEmail(email: email, password: password)
     }
 }
 

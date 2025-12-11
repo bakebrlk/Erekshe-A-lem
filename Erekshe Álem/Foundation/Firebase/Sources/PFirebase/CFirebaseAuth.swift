@@ -15,6 +15,11 @@ public final class CFirebaseAuth: Sendable {
     
     public init() {}
     
+    // MARK: - SignUp with Email
+    func signUpEmail(email: String, password: String) async throws {
+        try await Auth.auth().createUser(withEmail: email, password: password)
+    }
+    
     // MARK: - Email
     func signInWithEmail(
         email: String,

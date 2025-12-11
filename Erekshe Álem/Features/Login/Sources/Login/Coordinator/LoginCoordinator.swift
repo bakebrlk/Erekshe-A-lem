@@ -16,7 +16,7 @@ public struct LoginCoordinator: View {
     }
 
     public var body: some View {
-        LoginView()
+        RegistryView()
     }
 }
 
