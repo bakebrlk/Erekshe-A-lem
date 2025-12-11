@@ -11,6 +11,7 @@ import SwiftUI
 import Combine
 import PFirebase
 import AuthenticationServices
+import GoogleSignIn
 
 @MainActor
 final class LoginViewModel: ObservableObject {
@@ -57,6 +58,7 @@ final class LoginViewModel: ObservableObject {
             }
     }
     
+    // MARK: - Sign in with Apple functions
     func signInWithAppleOnRequest(request: ASAuthorizationAppleIDRequest) {
         let nonce = firebase.generateAppleSignInNonce()
         model.currentNonce = nonce
@@ -97,6 +99,38 @@ final class LoginViewModel: ObservableObject {
             
         case .failure(let error):
             print("❌ Ошибка при входе через Apple: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - Sign in with Google functions
+    func signInWithGoogle() async {
+        model.state = .loading
+        
+        guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?
+            .windows.first?.rootViewController else {
+            print("Could not find presenting view controller for Google Sign-In.")
+            model.state = .error
+            return
+        }
+        
+        do {
+            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController)
+            
+            guard let idToken = result.user.idToken?.tokenString else {
+                print("Не удалось получить ID токен Google.")
+                model.state = .error
+                return
+            }
+            
+            let accessToken = result.user.accessToken.tokenString
+            
+            try await firebase.signInWithGoogle(idToken: idToken, accessToken: accessToken)
+            
+            model.state = .display
+            print("🎉 Успешный вход через Google в Firebase!")
+        } catch {
+            print("❌ Ошибка при входе через Google: \(error.localizedDescription)")
+            model.state = .error
         }
     }
 }

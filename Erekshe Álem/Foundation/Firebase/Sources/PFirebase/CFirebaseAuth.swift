@@ -9,8 +9,11 @@ import FirebaseAuth
 import FirebaseCore
 import AuthenticationServices
 import CryptoKit
+import GoogleSignIn
 
-struct CFirebaseAuth {
+public final class CFirebaseAuth: Sendable {
+    
+    public init() {}
     
     // MARK: - Email
     func signInWithEmail(
@@ -49,6 +52,16 @@ struct CFirebaseAuth {
             print("User signed in successfully with Apple!")
             completion(.success(()))
         }
+    }
+    
+    // MARK: - Google
+    func signInWithGoogle(
+        idToken: String,
+        accessToken: String
+    ) async throws {
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                       accessToken: accessToken)
+        try await Auth.auth().signIn(with: credential)
     }
 }
 

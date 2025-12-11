@@ -9,9 +9,9 @@
 import Foundation
 import AuthenticationServices
 
-public struct CFirebase {
+public final class CFirebase: Sendable {
     // MARK: - Params
-    private var auth: CFirebaseAuth = CFirebaseAuth()
+    private let auth: CFirebaseAuth = CFirebaseAuth()
     
     public init() {}
     
@@ -36,6 +36,14 @@ public struct CFirebase {
             fullName: fullName,
             completion: completion
         )
+    }
+    
+    // MARK: - Google
+    public func signInWithGoogle(
+        idToken: String,
+        accessToken: String
+    ) async throws {
+        try await auth.signInWithGoogle(idToken: idToken, accessToken: accessToken)
     }
 }
 

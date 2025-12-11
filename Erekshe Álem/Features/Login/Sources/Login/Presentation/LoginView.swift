@@ -82,7 +82,11 @@ public struct LoginView: View {
                 .frame(maxWidth: .infinity, maxHeight: 52)
                 .padding(.horizontal, 24)
                 
-                Button(action: {}) {
+                Button(action: {
+                    Task {
+                        await viewModel.signInWithGoogle()
+                    }
+                }) {
                     HStack {
                         Image(systemName: "globe")
                         Text("Login with Google")

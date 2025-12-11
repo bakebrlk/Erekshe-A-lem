@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B23F8502EEB118C00D34E9E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 8B23F84F2EEB118C00D34E9E /* GoogleSignIn */; };
+		8B23F8522EEB118C00D34E9E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B23F8512EEB118C00D34E9E /* GoogleSignInSwift */; };
 		8B4205842EE8F7FA00FCA581 /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4205832EE8F7FA00FCA581 /* Login */; };
 		8B4205862EE8F80300FCA581 /* PFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4205852EE8F80300FCA581 /* PFirebase */; };
 		8B4205892EE8F83B00FCA581 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4205882EE8F83B00FCA581 /* FirebaseAnalytics */; };
@@ -40,6 +42,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8B23F85C2EEB172800D34E9E /* Exceptions for "Erekshe Álem" folder in "Erekshe Álem" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Erekshe-A-lem-Info.plist",
+			);
+			target = 8B251E202EBDF69E0027D01A /* Erekshe Álem */;
+		};
 		8B7F58842EBE010E00B96675 /* Exceptions for "Test" folder in "Erekshe Álem" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -69,6 +78,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8B251E232EBDF69E0027D01A /* Erekshe Álem */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8B23F85C2EEB172800D34E9E /* Exceptions for "Erekshe Álem" folder in "Erekshe Álem" target */,
+			);
 			path = "Erekshe Álem";
 			sourceTree = "<group>";
 		};
@@ -89,7 +101,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B23F8522EEB118C00D34E9E /* GoogleSignInSwift in Frameworks */,
 				8B4205862EE8F80300FCA581 /* PFirebase in Frameworks */,
+				8B23F8502EEB118C00D34E9E /* GoogleSignIn in Frameworks */,
 				8B4205942EE90B0900FCA581 /* Lottie in Frameworks */,
 				8B42058D2EE8F83B00FCA581 /* FirebaseAuth in Frameworks */,
 				8B4205842EE8F7FA00FCA581 /* Login in Frameworks */,
@@ -171,6 +185,8 @@
 				8B42058C2EE8F83B00FCA581 /* FirebaseAuth */,
 				8B42058E2EE8F83B00FCA581 /* FirebaseCore */,
 				8B4205932EE90B0900FCA581 /* Lottie */,
+				8B23F84F2EEB118C00D34E9E /* GoogleSignIn */,
+				8B23F8512EEB118C00D34E9E /* GoogleSignInSwift */,
 			);
 			productName = "Erekshe Álem";
 			productReference = 8B251E212EBDF69E0027D01A /* Erekshe Álem.app */;
@@ -252,6 +268,7 @@
 				8B4205822EE8F7FA00FCA581 /* XCLocalSwiftPackageReference "Erekshe Álem/Features/Login" */,
 				8B4205872EE8F83B00FCA581 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8B4205922EE90B0900FCA581 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				8B23F84E2EEB118C00D34E9E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B251E222EBDF69E0027D01A /* Products */;
@@ -459,6 +476,7 @@
 				DEVELOPMENT_TEAM = KC6XD95DFT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Erekshe-A-lem-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Erekshe Álem";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -498,6 +516,7 @@
 				DEVELOPMENT_TEAM = KC6XD95DFT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Erekshe-A-lem-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Erekshe Álem";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -659,6 +678,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8B23F84E2EEB118C00D34E9E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		8B4205872EE8F83B00FCA581 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -678,6 +705,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8B23F84F2EEB118C00D34E9E /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B23F84E2EEB118C00D34E9E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		8B23F8512EEB118C00D34E9E /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B23F84E2EEB118C00D34E9E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		8B4205832EE8F7FA00FCA581 /* Login */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Login;
