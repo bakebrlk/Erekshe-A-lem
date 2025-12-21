@@ -25,24 +25,45 @@ public struct LoginView: View {
     
     public var body: some View {
         switch viewModel.model.state {
-        case .display: displayBody
-        case .loading: LoadingView()
-        case .error: Text("Error!!")
+            case .display: displayBody
+            case .loading: splashScreen
+            case .error: Text("Error!!")
         }
     }
     
-        @State private var currentPage = 0
-        
+    private var splashScreen: some View {
+        VStack(spacing: 20) {
+            Image("authSplash")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 225, height: 225)
+                .scaleEffect(viewModel.model.isAnimated ? 1.0 : 0.4)
+                .opacity(viewModel.model.isAnimated ? 1.0 : 0.0)
             
-        
-        
+            Text("Erekshe Alem")
+                .foregroundColor(.blue)
+                .font(.system(size: 30, weight: .black))
+                .opacity(viewModel.model.isAnimated ? 1.0 : 0.0)
+        }
+        .onAppear {
+            withAnimation(.easeOut(duration: 0.8)) {
+                viewModel.model.isAnimated = true
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    viewModel.model.state = .display
+                }
+            }
+        }
+    }
     
     private var displayBody: some View {
         VStack(spacing: 24) {
             Spacer()
             
             VStack(spacing: 0) {
-                TabView(selection: $currentPage) {
+                TabView(selection: viewModel.getCurentPage()) {
                     ForEach(Array(viewModel.onBording.enumerated()), id: \.element.id) { index, data in
                         onBording(
                             textF: data.titleFirst,
@@ -60,7 +81,7 @@ public struct LoginView: View {
             HStack(spacing: 8) {
                 ForEach(0..<viewModel.onBording.count, id: \.self) { index in
                     Circle()
-                        .fill(currentPage == index ? Color.blue : Color.gray.opacity(0.3))
+                        .fill(viewModel.getCurentPage().wrappedValue == index ? Color.blue : Color.gray.opacity(0.3))
                         .frame(width: 8, height: 8)
                 }
             }

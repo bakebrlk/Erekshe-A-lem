@@ -13,8 +13,10 @@ import PFirebase
 struct LoginModel {
     var email: String = ""
     var password: String = ""
-    var state: RequestState = .display
+    var state: RequestState = .loading
     var currentNonce: String? = nil
+    var currentPage = 0
+    var isAnimated: Bool = false
 }
 
 struct OnBording: Hashable {

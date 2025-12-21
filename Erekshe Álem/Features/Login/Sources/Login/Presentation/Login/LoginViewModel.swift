@@ -49,6 +49,17 @@ final class LoginViewModel: ObservableObject {
     }
     
     // MARK: - Modeling
+    func setCurentPage(page: Int) {
+        self.model.currentPage = page
+    }
+    
+    func getCurentPage() -> Binding<Int> {
+        Binding(
+            get: { self.model.currentPage },
+            set: { self.model.currentPage = $0 }
+        )
+    }
+    
     func getEmail() -> Binding<String> {
         Binding(
             get: { self.model.email },
