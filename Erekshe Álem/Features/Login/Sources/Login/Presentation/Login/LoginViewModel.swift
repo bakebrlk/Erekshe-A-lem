@@ -19,6 +19,29 @@ final class LoginViewModel: ObservableObject {
     @Published public var model: LoginModel
     private var firebase: CFirebase = CFirebase()
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
+    let onBording: [OnBording] = [
+        OnBording(
+            id: 1,
+            titleFirst: "Привет,",
+            titleSecond:" я ",
+            titleThird: "Блуми!",
+            description: "Я помогу тебе играть,учиться и открывать новое "
+        ),
+        OnBording(
+            id: 2,
+            titleFirst: "Играй,",
+            titleSecond: " думай,",
+            titleThird: " расти!",
+            description: "Развивай внимание, память и мышление в игре "
+        ),
+        OnBording(
+            id: 3,
+            titleFirst: "Bloomy",
+            titleSecond: " ждёт ",
+            titleThird: "тебя!",
+            description: "Я помогу тебе играть,учиться и открывать новое "
+        )
+    ]
     
     // MARK: Init
     init(dependencies: Dependencies) {

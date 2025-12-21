@@ -16,6 +16,7 @@
 		8B42058D2EE8F83B00FCA581 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B42058C2EE8F83B00FCA581 /* FirebaseAuth */; };
 		8B42058F2EE8F83B00FCA581 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B42058E2EE8F83B00FCA581 /* FirebaseCore */; };
 		8B4205942EE90B0900FCA581 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4205932EE90B0900FCA581 /* Lottie */; };
+		8BF0E62C2EF34C0500A6DCEA /* Nivelir in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF0E62B2EF34C0500A6DCEA /* Nivelir */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,13 +43,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8B23F85C2EEB172800D34E9E /* Exceptions for "Erekshe Álem" folder in "Erekshe Álem" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Erekshe-A-lem-Info.plist",
-			);
-			target = 8B251E202EBDF69E0027D01A /* Erekshe Álem */;
-		};
 		8B7F58842EBE010E00B96675 /* Exceptions for "Test" folder in "Erekshe Álem" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -78,9 +72,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8B251E232EBDF69E0027D01A /* Erekshe Álem */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				8B23F85C2EEB172800D34E9E /* Exceptions for "Erekshe Álem" folder in "Erekshe Álem" target */,
-			);
 			path = "Erekshe Álem";
 			sourceTree = "<group>";
 		};
@@ -107,6 +98,7 @@
 				8B4205942EE90B0900FCA581 /* Lottie in Frameworks */,
 				8B42058D2EE8F83B00FCA581 /* FirebaseAuth in Frameworks */,
 				8B4205842EE8F7FA00FCA581 /* Login in Frameworks */,
+				8BF0E62C2EF34C0500A6DCEA /* Nivelir in Frameworks */,
 				8B4205892EE8F83B00FCA581 /* FirebaseAnalytics in Frameworks */,
 				8B42058F2EE8F83B00FCA581 /* FirebaseCore in Frameworks */,
 				8B42058B2EE8F83B00FCA581 /* FirebaseAnalyticsCore in Frameworks */,
@@ -187,6 +179,7 @@
 				8B4205932EE90B0900FCA581 /* Lottie */,
 				8B23F84F2EEB118C00D34E9E /* GoogleSignIn */,
 				8B23F8512EEB118C00D34E9E /* GoogleSignInSwift */,
+				8BF0E62B2EF34C0500A6DCEA /* Nivelir */,
 			);
 			productName = "Erekshe Álem";
 			productReference = 8B251E212EBDF69E0027D01A /* Erekshe Álem.app */;
@@ -269,6 +262,7 @@
 				8B4205872EE8F83B00FCA581 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8B4205922EE90B0900FCA581 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				8B23F84E2EEB118C00D34E9E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				8BF0E62A2EF34C0500A6DCEA /* XCRemoteSwiftPackageReference "Nivelir" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B251E222EBDF69E0027D01A /* Products */;
@@ -702,6 +696,14 @@
 				minimumVersion = 4.5.2;
 			};
 		};
+		8BF0E62A2EF34C0500A6DCEA /* XCRemoteSwiftPackageReference "Nivelir" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hhru/Nivelir.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.10;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -747,6 +749,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B4205922EE90B0900FCA581 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		8BF0E62B2EF34C0500A6DCEA /* Nivelir */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BF0E62A2EF34C0500A6DCEA /* XCRemoteSwiftPackageReference "Nivelir" */;
+			productName = Nivelir;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

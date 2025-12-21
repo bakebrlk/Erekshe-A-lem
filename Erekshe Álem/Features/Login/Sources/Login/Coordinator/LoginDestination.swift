@@ -9,6 +9,6 @@
 
 import Foundation
 
-enum LoginDestination {
-    // Добавьте другие направления навигации здесь
+public enum LoginDestination {
+    case root
 }

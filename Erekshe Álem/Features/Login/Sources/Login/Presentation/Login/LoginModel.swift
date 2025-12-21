@@ -16,3 +16,11 @@ struct LoginModel {
     var state: RequestState = .display
     var currentNonce: String? = nil
 }
+
+struct OnBording: Hashable {
+    let id: Int
+    let titleFirst: String
+    let titleSecond: String
+    let titleThird: String
+    let description: String
+}

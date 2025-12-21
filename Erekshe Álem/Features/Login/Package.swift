@@ -20,14 +20,16 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../../Foundation/Firebase"),
-        .package(path: "../../Core/CommonUI")
+        .package(path: "../../Core/CommonUI"),
+        .package(path: "../../Foundation/Router")
     ],
     targets: [
         .target(
             name: "Login",
             dependencies: [
                 .product(name: "PFirebase", package: "Firebase"),
-                "CommonUI"
+                "CommonUI",
+                "Router"
             ]
         ),
         .testTarget(

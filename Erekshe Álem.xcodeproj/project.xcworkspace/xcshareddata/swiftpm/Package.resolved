@@ -1,5 +1,5 @@
 {
-  "originHash" : "2fe077dbfd06111b00781273194a4b8249e470f3a19614b9c99c140d4badc2b0",
+  "originHash" : "0a4793a18a411e8a497e2fe1201eea9a85bf12257792b7c428a065ed801536f8",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -143,6 +143,15 @@
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "nivelir",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hhru/Nivelir.git",
+      "state" : {
+        "revision" : "3fa23c2d23e8916eb020f023c277e9247d360ea1",
+        "version" : "1.9.10"
       }
     },
     {

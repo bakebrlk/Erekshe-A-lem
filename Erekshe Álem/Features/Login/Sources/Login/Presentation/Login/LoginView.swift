@@ -25,59 +25,48 @@ public struct LoginView: View {
     
     public var body: some View {
         switch viewModel.model.state {
-            case .display: displayBody
-            case .loading: LoadingView()
-            case .error: Text("Error!!")
+        case .display: displayBody
+        case .loading: LoadingView()
+        case .error: Text("Error!!")
         }
     }
     
+        @State private var currentPage = 0
+        
+            
+        
+        
+    
     private var displayBody: some View {
         VStack(spacing: 24) {
-            Text("Welcome Back")
-                .font(.largeTitle.bold())
-                .foregroundColor(viewModel.mainColor)
-            
             Spacer()
             
-            VStack(spacing: 16) {
-                TextField("Email", text: viewModel.getEmail())
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(12)
-                
-                
-                SecureField("Password", text: viewModel.getPassword())
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(12)
-            }
-            .padding(.horizontal, 24)
-            
-            
-            Button(action: {
-                Task {
-                    await viewModel.signWithEmail()
+            VStack(spacing: 0) {
+                TabView(selection: $currentPage) {
+                    ForEach(Array(viewModel.onBording.enumerated()), id: \.element.id) { index, data in
+                        onBording(
+                            textF: data.titleFirst,
+                            textS: data.titleSecond,
+                            textT: data.titleThird,
+                            description: data.description,
+                            imageName: "onBording\(data.id)"
+                        )
+                        .tag(index)
+                    }
                 }
-            }) {
-                Text("Login")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(viewModel.mainColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(16)
+                .tabViewStyle(.page(indexDisplayMode: .never))
             }
-            .padding(.horizontal, 24)
             
-            
-            Button(action: {}) {
-                Text("Forgot password?")
-                    .foregroundColor(viewModel.mainColor)
-                    .font(.callout)
+            HStack(spacing: 8) {
+                ForEach(0..<viewModel.onBording.count, id: \.self) { index in
+                    Circle()
+                        .fill(currentPage == index ? Color.blue : Color.gray.opacity(0.3))
+                        .frame(width: 8, height: 8)
+                }
             }
-            .padding(.top, -8)
-            
+            .padding(.bottom, 40)
             Spacer()
-
+            
             VStack(spacing: 16) {
                 SignInWithAppleButton(
                     onRequest: { request in viewModel.signInWithAppleOnRequest(request: request) },
@@ -87,9 +76,9 @@ public struct LoginView: View {
                         }
                     }
                 )
-                .frame(maxWidth: .infinity, maxHeight: 52)
-                .padding(.horizontal, 24)
-                
+                .frame(maxWidth: .infinity, maxHeight: 58)
+                .cornerRadius(35)
+
                 Button(action: {
                     Task {
                         await viewModel.signInWithGoogle()
@@ -104,29 +93,51 @@ public struct LoginView: View {
                     .background(Color.white)
                     .foregroundColor(.black)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 16)
+                        RoundedRectangle(cornerRadius: 35)
                             .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                     )
                 }
-                .padding(.horizontal, 24)
-                
-                Button(action: {}) {
-                    Text("Create new account")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(viewModel.mainColor)
-                        .foregroundColor(.white)
-                        .cornerRadius(16)
-                }
-                .padding(.horizontal, 24)
             }
-            
+            .padding(.horizontal, 24)
             
             Spacer()
         }
         .background(Color(.systemBackground))
     }
     
+    private func onBording(
+        textF: String,
+        textS: String,
+        textT: String,
+        description: String,
+        imageName: String
+    ) -> some View {
+        VStack(spacing: 34) {
+            VStack(spacing: 4) {
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(
+                        height: UIScreen.main.bounds.height * 0.29
+                    )
+                
+                (Text(textF)
+                    .foregroundColor(.orange)
+                + Text(textS)
+                    .foregroundColor(.green)
+                + Text(textT)
+                    .foregroundColor(.red))
+                    .font(.system(size: 30, weight: .black))
+                
+                Text(description)
+                    .font(.system(size: 21, weight: .medium))
+                    .foregroundColor(Color(red: 0.2, green: 0.2, blue: 0.5))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 40)
+            }
+        }
+        .frame(width: UIScreen.main.bounds.width)
+    }
 }
 
 extension LoginView {
