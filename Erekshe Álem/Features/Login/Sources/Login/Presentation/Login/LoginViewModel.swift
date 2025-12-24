@@ -18,6 +18,8 @@ final class LoginViewModel: ObservableObject {
     // MARK: Params
     @Published public var model: LoginModel
     private var firebase: CFirebase = CFirebase()
+    private weak var coordinator: LoginCoordinator?
+    
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
     let onBording: [OnBording] = [
         OnBording(
@@ -46,6 +48,7 @@ final class LoginViewModel: ObservableObject {
     // MARK: Init
     init(dependencies: Dependencies) {
         self.model = LoginModel()
+        self.coordinator = dependencies.coordinator
     }
     
     // MARK: - Modeling
@@ -160,14 +163,20 @@ final class LoginViewModel: ObservableObject {
             model.state = .error
         }
     }
+    
+    // MARK: - Routing
+    func navigateToRegistry() {
+        coordinator?.navigate(to: .registry)
+    }
 }
 
 // MARK: - Dependencies
 extension LoginViewModel {
     struct Dependencies {
+        var coordinator: LoginCoordinator
         
-        init() {
-            
+        init(coordinator: LoginCoordinator) {
+            self.coordinator = coordinator
         }
     }
 }

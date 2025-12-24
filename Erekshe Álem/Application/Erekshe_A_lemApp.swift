@@ -1,12 +1,6 @@
-//
-//  Erekshe_A_lemApp.swift
-//  Erekshe Álem
-//
-//  Created by bakebrlk on 07.11.2025.
-//
-
 import SwiftUI
 import Login
+import UIKit
 
 @main
 struct Erekshe_A_lemApp: App {
@@ -14,7 +8,32 @@ struct Erekshe_A_lemApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginCoordinator(dependencies: .init())
+            ContentView()
+                .onAppear {
+                    setupNavigation()
+                }
         }
+    }
+}
+
+struct ContentView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UIViewController {
+        return UIViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        
+    }
+}
+
+private func setupNavigation() {
+    DispatchQueue.main.async {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+        
+        let appRouter = AppRouter(window: window)
+        appRouter.start()
     }
 }

@@ -15,10 +15,10 @@ public struct LoginView: View {
     
     @StateObject var viewModel: LoginViewModel
     
-    public init() {
+    public init(dependencies: Dependencies) {
         _viewModel = StateObject(
             wrappedValue: LoginViewModel(
-                dependencies: LoginViewModel.Dependencies()
+                dependencies: .init(coordinator: dependencies.coordinator)
             )
         )
     }
@@ -101,9 +101,10 @@ public struct LoginView: View {
                 .cornerRadius(35)
 
                 Button(action: {
-                    Task {
-                        await viewModel.signInWithGoogle()
-                    }
+//                    Task {
+//                        await viewModel.signInWithGoogle()
+//                    }
+                    viewModel.navigateToRegistry()
                 }) {
                     HStack {
                         Image(systemName: "globe")
@@ -164,10 +165,10 @@ public struct LoginView: View {
 extension LoginView {
     public struct Dependencies {
         
-        public init(
-            
-        ) {
-            
+        var coordinator: LoginCoordinator
+        
+        init(coordinator: LoginCoordinator) {
+            self.coordinator = coordinator
         }
     }
 }

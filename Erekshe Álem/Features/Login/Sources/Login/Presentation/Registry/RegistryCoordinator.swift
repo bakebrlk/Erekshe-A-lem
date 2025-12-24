@@ -1,17 +1,15 @@
 //
+//  RegistryCoordinator.swift
 //  Login
-//  LoginCoordinatorCoordinator.swift
 //
-//  Template created by bakebrlk.
-//  File created by bakebrlk on 14.11.2025.
-//  We'll make it work, and I believe you 🚀
+//  Created by bakebrlk on 25.12.2025.
 //
 
 import SwiftUI
 import Router
 import Nivelir
 
-public final class LoginCoordinator: IDestinationCoordinator {
+public final class RegistryCoordinator: IDestinationCoordinator {
     
     public typealias Destination = LoginDestination
     
@@ -26,24 +24,16 @@ public final class LoginCoordinator: IDestinationCoordinator {
     public func navigate(to destination: LoginDestination) {
         switch destination {
         case .registry:
-            navigateToRegistry()
+            ()
         }
     }
     
     public func makeView() -> AnyView {
-        return AnyView(LoginView(dependencies: .init(coordinator: self)))
-    }
-    
-    private func navigateToRegistry() {
-        navigator.navigate { route in
-            route
-                .top(.stack)
-                .push(RegistryCoordinator(navigator: navigator).asAnyScreen())
-        }
+        return AnyView(RegistryView())
     }
 }
 
-extension LoginCoordinator {
+extension  RegistryCoordinator {
     public struct Dependencies {
         
         public init(

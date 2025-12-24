@@ -3,27 +3,53 @@
 
 import SwiftUI
 import Nivelir
+import UIKit
 
-public protocol IRoutable {
-    associatedtype Route
-    func navigate(to route: Route)
+public typealias AppScreen = AnyScreen<UIViewController>
+
+public protocol IAppRouting: AnyObject {
+    var navigator: ScreenNavigator { get }
+    func start()
 }
 
+@MainActor
 public protocol ICoordinator: AnyObject {
     var navigator: ScreenNavigator { get }
-    var childCoordinators: [ICoordinator] { get set }
-    
-    func start()
-    func addChild(_ coordinator: ICoordinator)
-    func removeChild(_ coordinator: ICoordinator)
+    func makeView() -> AnyView
+    func asAnyScreen() -> AppScreen
 }
 
-public extension ICoordinator {
-    func addChild(_ coordinator: ICoordinator) {
-        childCoordinators.append(coordinator)
+@MainActor
+public protocol IDestinationCoordinator: ICoordinator {
+    associatedtype Destination
+    func navigate(to destination: Destination)
+}
+
+fileprivate struct HostingScreen: Screen {
+    typealias Container = UIViewController
+    typealias Observer = Never
+
+    let name: String
+    let traits: Set<AnyHashable>
+    weak var coordinator: ICoordinator?
+
+    @MainActor
+    func build(navigator: ScreenNavigator) -> UIViewController {
+        guard let coordinator else {
+            return UIHostingController(rootView: AnyView(EmptyView()))
+        }
+        return UIHostingController(rootView: coordinator.makeView())
     }
-    
-    func removeChild(_ coordinator: ICoordinator) {
-        childCoordinators.removeAll { $0 === coordinator }
+}
+
+extension ICoordinator {
+    public func asAnyScreen() -> AppScreen {
+        let screen = HostingScreen(
+            name: String(describing: Self.self),
+            traits: [],
+            coordinator: self
+        )
+
+        return screen.eraseToAnyScreen()
     }
 }
