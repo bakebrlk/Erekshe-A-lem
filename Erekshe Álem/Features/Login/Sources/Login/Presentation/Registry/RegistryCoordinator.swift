@@ -17,6 +17,7 @@ public final class RegistryCoordinator: IDestinationCoordinator {
     private let dependencies: Dependencies
     
     public init(navigator: ScreenNavigator, dependencies: Dependencies = .init()) {
+        print("Registry Coordinator Init !!!")
         self.navigator = navigator
         self.dependencies = dependencies
     }
@@ -29,7 +30,8 @@ public final class RegistryCoordinator: IDestinationCoordinator {
     }
     
     public func makeView() -> AnyView {
-        return AnyView(RegistryView())
+        print("Registry Coordinator make View !!!")
+        return AnyView(RegistryView(dependencies: .init(coordinator: self)))
     }
 }
 

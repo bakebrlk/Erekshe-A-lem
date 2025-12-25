@@ -35,10 +35,13 @@ public final class LoginCoordinator: IDestinationCoordinator {
     }
     
     private func navigateToRegistry() {
+        let registry = RegistryCoordinator(navigator: navigator)
+        
         navigator.navigate { route in
             route
                 .top(.stack)
-                .push(RegistryCoordinator(navigator: navigator).asAnyScreen())
+                .push(registry.asAnyScreen())
+                .resolve()
         }
     }
 }

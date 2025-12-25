@@ -19,10 +19,12 @@ final class RegistryViewModel: ObservableObject {
     @Published private var model: RegistryModel
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
     private var firebase: CFirebase = CFirebase()
+    private weak var coordinator: RegistryCoordinator?
 
     // MARK: Init
     init(dependencies: Dependencies) {
         self.model = RegistryModel()
+        self.coordinator = dependencies.coordinator
     }
     
     // MARK: - Modeling
@@ -204,9 +206,10 @@ private extension RegistryViewModel {
 // MARK: - Dependencies
 extension RegistryViewModel {
     struct Dependencies {
-        
-        init() {
-            
+        var coordinator: RegistryCoordinator
+
+        init(coordinator: RegistryCoordinator) {
+            self.coordinator = coordinator
         }
     }
 }

@@ -101,10 +101,10 @@ public struct LoginView: View {
                 .cornerRadius(35)
 
                 Button(action: {
-//                    Task {
-//                        await viewModel.signInWithGoogle()
-//                    }
-                    viewModel.navigateToRegistry()
+                    Task {
+                        await viewModel.signInWithGoogle()
+                    }
+//                    viewModel.navigateToRegistry()
                 }) {
                     HStack {
                         Image(systemName: "globe")

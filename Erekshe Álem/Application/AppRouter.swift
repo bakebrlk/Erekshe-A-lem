@@ -15,23 +15,25 @@ public final class AppRouter: IAppRouting {
     public let navigator: ScreenNavigator
     private let window: UIWindow
     
-    
     public init(window: UIWindow) {
         self.window = window
         
-        let navigationController = UINavigationController()
-        window.rootViewController = navigationController
+        window.rootViewController = UINavigationController()
         window.makeKeyAndVisible()
         
-        navigator = ScreenNavigator(window: window)
+        self.navigator = ScreenNavigator(window: window)
     }
     
     public func start() {
         let loginCoordinator = LoginCoordinator(navigator: navigator, dependencies: .init())
-                
+        
         navigator.navigate { route in
             route
-                .setRoot(to: loginCoordinator.asAnyScreen(), animation: .none)
+                .setRoot(
+                    to: loginCoordinator.asAnyScreen().withStackContainer(),
+                    animation: .none
+                )
+                .makeKeyAndVisible()
                 .resolve()
         }
     }

@@ -14,10 +14,11 @@ public struct RegistryView: View {
     
     @StateObject var viewModel: RegistryViewModel
     
-    public init() {
+    public init(dependencies: Dependencies) {
+        print("Registry View Init !!!")
         _viewModel = StateObject(
             wrappedValue: RegistryViewModel(
-                dependencies: RegistryViewModel.Dependencies()
+                dependencies: .init(coordinator: dependencies.coordinator)
             )
         )
     }
@@ -147,11 +148,10 @@ public struct RegistryView: View {
 
 extension RegistryView {
     public struct Dependencies {
-        
-        public init(
-            
-        ) {
-            
+        var coordinator: RegistryCoordinator
+
+        init(coordinator: RegistryCoordinator) {
+            self.coordinator = coordinator
         }
     }
 }

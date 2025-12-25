@@ -26,14 +26,14 @@ struct ContentView: UIViewControllerRepresentable {
     }
 }
 
-private func setupNavigation() {
+fileprivate func setupNavigation() {
     DispatchQueue.main.async {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first else {
             return
         }
         
-        let appRouter = AppRouter(window: window)
-        appRouter.start()
+        AppRouter(window: window)
+            .start()
     }
 }
