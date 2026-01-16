@@ -27,3 +27,7 @@ public struct LoadingView: View {
         }
     }
 }
+
+public final class OrientationLock {
+    @MainActor public static var lock: UIInterfaceOrientationMask = .portrait
+}

@@ -4,6 +4,7 @@
 import SwiftUI
 import Nivelir
 import UIKit
+import CommonUI
 
 public typealias AppScreen = AnyScreen<UIViewController>
 
@@ -17,6 +18,7 @@ public protocol ICoordinator: AnyObject {
     var navigator: ScreenNavigator { get }
     func makeView() -> AnyView
     func asAnyScreen() -> AppScreen
+    var supportedInterfaceOrientations: UIInterfaceOrientationMask { get }
 }
 
 @MainActor
@@ -51,5 +53,10 @@ extension ICoordinator {
         )
 
         return screen.eraseToAnyScreen()
+    }
+    
+    public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        print("Orientation requested")
+        return OrientationLock.lock
     }
 }

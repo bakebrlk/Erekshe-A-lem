@@ -10,13 +10,14 @@
 import SwiftUI
 import Combine
 import PFirebase
+import CommonUI
 
 @MainActor
 final class GameViewModel: ObservableObject {
     // MARK: Params
     @Published var model: GameModel
     private weak var coordinator: GameCoordinator?
-
+    
     // MARK: Init
     init(dependencies: Dependencies) {
         self.model = GameModel()
@@ -30,6 +31,23 @@ final class GameViewModel: ObservableObject {
             set: { self.model.state = $0 }
         )
     }
+    
+    // MARK: - Action
+    func rotate(_ orientation: UIInterfaceOrientationMask) {
+        OrientationLock.lock = orientation
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            return
+        }
+        
+        let preferences = UIWindowScene.GeometryPreferences.iOS(
+            interfaceOrientations: orientation
+        )
+        
+        scene.requestGeometryUpdate(preferences) { error in
+            print("Rotation error:", error.localizedDescription)
+        }
+    }
+    
 }
 
 // MARK: - Dependencies
