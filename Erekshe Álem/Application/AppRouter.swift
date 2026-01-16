@@ -9,6 +9,7 @@ import UIKit
 import Nivelir
 import Router
 import Login
+import Game
 
 public final class AppRouter: IAppRouting {
     
@@ -25,7 +26,8 @@ public final class AppRouter: IAppRouting {
     }
     
     public func start() {
-        let loginCoordinator = LoginCoordinator(navigator: navigator, dependencies: .init())
+//        let loginCoordinator = LoginCoordinator(navigator: navigator, dependencies: .init())
+        let loginCoordinator = GameCoordinator(navigator: navigator)
         
         navigator.navigate { route in
             route
