@@ -32,6 +32,21 @@ final class GameViewModel: ObservableObject {
         )
     }
     
+    func loadingTextTypeWriter(at position: Int = 0) {
+        if position < model.loadingFullText.count {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                    guard let self = self else { return }
+                    model.loadingText.append(
+                        model.loadingFullText[
+                            model.loadingFullText.index(
+                                model.loadingFullText.startIndex,
+                                offsetBy: position
+                            )])
+                    loadingTextTypeWriter(at: position + 1)
+                }
+            }
+        }
+    
     // MARK: - Action
     func rotate(_ orientation: UIInterfaceOrientationMask) {
         OrientationLock.lock = orientation

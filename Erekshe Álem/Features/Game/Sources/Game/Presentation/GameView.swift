@@ -13,7 +13,6 @@ import Lottie
 public struct GameView: View {
     
     @StateObject var viewModel: GameViewModel
-    @State var canForceUpdate: Bool = false
     
     public init(dependencies: Dependencies) {
         _viewModel = StateObject(
@@ -36,14 +35,25 @@ public struct GameView: View {
             VStack {
                 Spacer()
                 
-                if canForceUpdate {
-                    Text("Hello World!")
+                if viewModel.model.canForceUpdate {
+                    Text(viewModel.model.loadingText)
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.orange, .red, .green],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .onAppear {
+                            viewModel.loadingTextTypeWriter()
+                        }
                 } else {
                     LottieView(animation: .named("rotateScreen"))
                         .playing()
                         .animationDidFinish { _ in
                             viewModel.rotate(.landscape)
-                            canForceUpdate = true
+                            viewModel.model.canForceUpdate = true
                         }
                         .frame(
                             maxWidth: .infinity,
@@ -59,12 +69,12 @@ public struct GameView: View {
             )
             .background(
                 Group {
-                    if canForceUpdate {
+                    if viewModel.model.canForceUpdate {
                         Image("premain")
                             .resizable()
                             .scaledToFill()
                             .frame(
-                                width: geo.size.height,  // Меняем местами
+                                width: geo.size.height,
                                 height: geo.size.width
                             )
                             .rotationEffect(.degrees(-90))
