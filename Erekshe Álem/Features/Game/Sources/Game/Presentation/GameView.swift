@@ -101,7 +101,17 @@ public struct GameView: View {
     
     
     private var displayBody: some View {
-        Text("Hello World!")
+        ZStack {
+            Image("mainBG")
+                .resizable()
+                .scaledToFit()
+            
+            VStack(spacing: .zero) {
+                
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
     }
     
 }
