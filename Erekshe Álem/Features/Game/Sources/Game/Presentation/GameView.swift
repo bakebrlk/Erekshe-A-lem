@@ -159,8 +159,13 @@ public struct GameView: View {
                 }
                 .padding(30)
                 
+                ScrollView {
+                    cart()
+                }
+            }
+            
+            VStack(spacing: 0) {
                 Spacer()
-                
                 HStack(spacing: 0) {
                     Spacer()
                     Button {
@@ -181,6 +186,54 @@ public struct GameView: View {
         .ignoresSafeArea()
     }
     
+    
+    private func cart() -> some View {
+        ZStack {
+            VStack(spacing: .zero) {
+                Spacer()
+                VStack(spacing: 5) {
+                    Spacer()
+                }
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: UIScreen.main.bounds.height * 0.542
+                )
+                .overlay(
+                    RoundedCornerShape(
+                        topLeft: 50,
+                        topRight: 50,
+                        bottomLeft: 20,
+                        bottomRight: 20
+                    )
+                    .foregroundStyle(.blue4FF)
+                )
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            VStack(spacing: .zero) {
+                Image(.brain)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(5)
+                    .frame(width: 55, height: 55)
+                    .background(.blue4FF.opacity(0.9))
+                    .overlay (
+                        Circle()
+                            .stroke(Color(.systemBlue), lineWidth: 3)
+                    )
+                    .cornerRadius(27.5, corners: .allCorners)
+            }
+            .frame(
+                width: UIScreen.main.bounds.width * 0.252,
+                height: UIScreen.main.bounds.height * 0.618,
+                alignment: .top
+            )
+        }
+        .frame(
+            width: UIScreen.main.bounds.width * 0.252,
+            height: UIScreen.main.bounds.height * 0.618
+        )
+    }
 }
 
 extension GameView {

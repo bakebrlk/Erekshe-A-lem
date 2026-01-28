@@ -25,6 +25,14 @@ public extension ShapeStyle where Self == Color {
         )
     }
     
+    static var blue4FF: Color {
+        Color(
+            red: 0.2784313725490196,
+            green: 0.7686274509803922,
+            blue: 1
+        )
+    }
+    
     // MARK: - Yellow
     static var yellowD73: Color {
         Color(
