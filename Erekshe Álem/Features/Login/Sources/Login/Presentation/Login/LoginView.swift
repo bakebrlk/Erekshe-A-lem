@@ -10,6 +10,7 @@
 import SwiftUI
 import CommonUI
 import AuthenticationServices
+import CommonUI
 
 public struct LoginView: View {
     
@@ -33,7 +34,7 @@ public struct LoginView: View {
     
     private var splashScreen: some View {
         VStack(spacing: 20) {
-            Image("authSplash")
+            Image(.authSplash)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 225, height: 225)

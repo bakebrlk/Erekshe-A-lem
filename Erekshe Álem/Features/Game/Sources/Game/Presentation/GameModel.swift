@@ -14,5 +14,5 @@ struct GameModel {
     var state: RequestState = .loading
     var canForceUpdate: Bool = false
     var loadingText: String = ""
-    var loadingFullText: String = "Играй и развивайся с Блуми"
+    var loadingFullText: String = "Играй и развивайся с Блуми!"
 }

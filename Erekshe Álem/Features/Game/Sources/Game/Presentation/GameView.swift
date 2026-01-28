@@ -9,6 +9,8 @@
 
 import SwiftUI
 import Lottie
+import DesignSystem
+import CommonUI
 
 public struct GameView: View {
     
@@ -70,7 +72,7 @@ public struct GameView: View {
             .background(
                 Group {
                     if viewModel.model.canForceUpdate {
-                        Image("premain")
+                        Image(.premain)
                             .resizable()
                             .scaledToFill()
                             .frame(
@@ -84,7 +86,7 @@ public struct GameView: View {
                             )
                             .clipped()
                     } else {
-                        Image("premain")
+                        Image(.premain)
                             .resizable()
                             .scaledToFill()
                             .frame(
@@ -102,12 +104,77 @@ public struct GameView: View {
     
     private var displayBody: some View {
         ZStack {
-            Image("mainBG")
+            Image(.mainBG)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
             
             VStack(spacing: .zero) {
+                HStack(spacing: 20) {
+                    
+                    HStack(spacing: 2) {
+                        HStack(spacing: 5) {
+                            Image(.box)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 30, maxHeight: 30)
+                            
+                            Text("Награды")
+                                .frame(maxWidth: 80)
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundStyle(.blue071)
+                        }
+                        .padding(.horizontal, 5)
+                        .background(.yellowD73)
+                        .cornerRadius(20)
+                    }
+                    .padding(4)
+                    .background(.yellowB62)
+                    .cornerRadius(20)
+                    
+                    Spacer()
+                    
+                    ZStack {
+                        HStack(spacing: 2) {
+                            Text("100")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .font(.system(size: 22, weight: .semibold))
+                        }
+                        .padding(4)
+                        .background(.yellowE1)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.yellow34A, lineWidth: 2)
+                        )
+                        .cornerRadius(20)
+                        
+                        Image(.coin)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 90, height: 45, alignment: .leading)
+                    }
+                    .frame(maxWidth: 90)
+                    .clipped()
+                }
+                .padding(30)
                 
+                Spacer()
+                
+                HStack(spacing: 0) {
+                    Spacer()
+                    Button {
+                        
+                    } label: {
+                        Image(.iconRight)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 50, maxHeight: 50)
+                    }
+                    .frame(width: 90, height: 90)
+                    .background(.blueFF)
+                    .cornerRadius(45, corners: [.bottomLeft, .topLeft])
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
