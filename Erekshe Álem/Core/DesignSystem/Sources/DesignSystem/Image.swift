@@ -11,4 +11,5 @@ public enum ImageNames: String {
     case authSplash
     case premain, mainBG, box, coin, iconRight
     case brain
+    case game1
 }

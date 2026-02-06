@@ -33,6 +33,15 @@ public extension ShapeStyle where Self == Color {
         )
     }
     
+    static var blueE79: Color {
+        Color(
+            red: 0,
+            green: 0.24313725490196078,
+            blue: 0.4745098039215686,
+            opacity: 0.8
+        )
+    }
+    
     // MARK: - Yellow
     static var yellowD73: Color {
         Color(

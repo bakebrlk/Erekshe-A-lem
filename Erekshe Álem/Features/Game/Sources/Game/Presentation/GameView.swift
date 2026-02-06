@@ -191,7 +191,7 @@ public struct GameView: View {
         ZStack {
             VStack(spacing: .zero) {
                 Spacer()
-                VStack(spacing: 5) {
+                VStack(spacing: .zero) {
                     Spacer()
                 }
                 .frame(
@@ -207,6 +207,64 @@ public struct GameView: View {
                     )
                     .foregroundStyle(.blue4FF)
                 )
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            VStack(spacing: .zero) {
+                Spacer()
+                VStack(spacing: 5) {
+                    Text("Внимание")
+                        .font(.system(
+                            size: 22,
+                            weight: .bold
+                        ))
+                        .foregroundStyle(.blueE79)
+                    
+                    VStack(spacing: 5) {
+                        Text("Найди одинаковые")
+                            .font(.system(
+                                size: 15,
+                                weight: .semibold
+                            ))
+                        Image(.game1)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.2)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.blue4FF, lineWidth: 1)
+                    )
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Играть")
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 18, weight: .black))
+                            .foregroundStyle(.white)
+                    }
+                    .padding(.vertical, 10)
+                    .background(.green)
+                    .cornerRadius(30, corners: .allCorners)
+                    .padding(.horizontal, 30)
+                    .padding(.top, 5)
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.495)
+                .background(
+                    RoundedCornerShape(
+                        topLeft: 50,
+                        topRight: 50,
+                        bottomLeft: 20,
+                        bottomRight: 20
+                    )
+                    .foregroundStyle(.white)
+                )
+                .padding(10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             

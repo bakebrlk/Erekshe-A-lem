@@ -11,7 +11,7 @@ import Foundation
 import PFirebase
 
 struct GameModel {
-    var state: RequestState = .loading
+    var state: RequestState = .display
     var canForceUpdate: Bool = false
     var loadingText: String = ""
     var loadingFullText: String = "Играй и развивайся с Блуми!"
