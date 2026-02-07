@@ -11,6 +11,7 @@ import SwiftUI
 import Lottie
 import DesignSystem
 import CommonUI
+import Domain
 
 public struct GameView: View {
     
@@ -99,6 +100,11 @@ public struct GameView: View {
             )
         }
         .ignoresSafeArea()
+        .onAppear {
+            Task {
+                await viewModel.fetchGames()
+            }
+        }
     }
     
     
@@ -159,9 +165,16 @@ public struct GameView: View {
                 }
                 .padding(30)
                 
-                ScrollView {
-                    cart()
+                ScrollView(.horizontal) {
+                    HStack(spacing: 30) {
+                        ForEach(viewModel.getGames()) { game in
+                            cart(model: game.wrappedValue)
+                        }
+                    }
                 }
+                .padding(.horizontal, UIScreen.main.bounds.width * 0.08)
+                
+                Spacer()
             }
             
             VStack(spacing: 0) {
@@ -186,8 +199,7 @@ public struct GameView: View {
         .ignoresSafeArea()
     }
     
-    
-    private func cart() -> some View {
+    private func cart(model: Game) -> some View {
         ZStack {
             VStack(spacing: .zero) {
                 Spacer()
@@ -205,7 +217,7 @@ public struct GameView: View {
                         bottomLeft: 20,
                         bottomRight: 20
                     )
-                    .foregroundStyle(.blue4FF)
+                    .foregroundStyle(model.color.mainColor)
                 )
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -213,7 +225,7 @@ public struct GameView: View {
             VStack(spacing: .zero) {
                 Spacer()
                 VStack(spacing: 5) {
-                    Text("Внимание")
+                    Text(model.title)
                         .font(.system(
                             size: 22,
                             weight: .bold
@@ -221,12 +233,12 @@ public struct GameView: View {
                         .foregroundStyle(.blueE79)
                     
                     VStack(spacing: 5) {
-                        Text("Найди одинаковые")
+                        Text(model.description)
                             .font(.system(
                                 size: 15,
                                 weight: .semibold
                             ))
-                        Image(.game1)
+                        Image(model.deLogo)
                             .resizable()
                             .scaledToFit()
                     }
@@ -235,7 +247,7 @@ public struct GameView: View {
                     .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(.blue4FF, lineWidth: 1)
+                            .stroke(model.color.mainColor, lineWidth: 1)
                     )
                     
                     Button {
@@ -269,15 +281,15 @@ public struct GameView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             VStack(spacing: .zero) {
-                Image(.brain)
+                Image(model.logo)
                     .resizable()
                     .scaledToFit()
                     .padding(5)
                     .frame(width: 55, height: 55)
-                    .background(.blue4FF.opacity(0.9))
+                    .background(model.color.logoColor)
                     .overlay (
                         Circle()
-                            .stroke(Color(.systemBlue), lineWidth: 3)
+                            .stroke(model.color.strokeColor, lineWidth: 6)
                     )
                     .cornerRadius(27.5, corners: .allCorners)
             }

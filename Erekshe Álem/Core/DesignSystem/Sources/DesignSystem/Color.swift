@@ -9,6 +9,22 @@ import SwiftUI
 
 public extension ShapeStyle where Self == Color {
     // MARK: - Blue
+    static var blue3FF: Color {
+        Color(
+            red: 0.4196078431372549,
+            green: 0.8274509803921568,
+            blue: 1
+        )
+    }
+    
+    static var blue1FF: Color {
+        Color(
+            red: 0.8705882352941177,
+            green: 0.9450980392156862,
+            blue: 1
+        )
+    }
+    
     static var blue071: Color {
         Color(
             red: 0,
@@ -72,6 +88,55 @@ public extension ShapeStyle where Self == Color {
             red: 1,
             green: 0.7647058823529411,
             blue: 0.2901960784313726
+        )
+    }
+    
+    static var yellowB25: Color {
+        Color(
+            red: 1,
+            green: 0.8588235294117647,
+            blue: 0.1450980392156863
+        )
+    }
+    
+    static var yellowC97: Color {
+        Color(
+            red: 1,
+            green: 0.8627450980392157,
+            blue: 0.592156862745098
+        )
+    }
+    
+    static var yellow1D5: Color {
+        Color(
+            red: 1,
+            green: 0.9450980392156862,
+            blue: 0.8352941176470589
+        )
+    }
+    
+    // MARK: - Green
+    static var greenC500: Color {
+        Color(
+            red: 0.023529411764705882,
+            green: 0.7725490196078432,
+            blue: 0
+        )
+    }
+    
+    static var greenF83: Color {
+        Color(
+            red: 0.6274509803921569,
+            green: 1,
+            blue: 0.5137254901960784
+        )
+    }
+    
+    static var greenD402: Color {
+        Color(
+            red: 0.03529411764705882,
+            green: 0.8313725490196079,
+            blue: 0.00784313725490196
         )
     }
 }

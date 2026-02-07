@@ -8,11 +8,12 @@
 
 import Foundation
 import AuthenticationServices
+import Domain
 
 public final class CFirebase: Sendable {
     // MARK: - Params
     private let auth: CFirebaseAuth = CFirebaseAuth()
-    
+    private let fireStore: CFireStore = CFireStore()
     public init() {}
     
     // MARK: - Auth Functions
@@ -45,6 +46,11 @@ public final class CFirebase: Sendable {
 //    - Registry
     public func signUpEmail(email: String, password: String) async throws {
         try await auth.signUpEmail(email: email, password: password)
+    }
+    
+    // MARK: - Firestore
+    public func fetchGames() async throws -> [Game] {
+        try await fireStore.fetchGames()
     }
 }
 

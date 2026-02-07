@@ -11,12 +11,15 @@ import SwiftUI
 import Combine
 import PFirebase
 import CommonUI
+import Firebase
+import Domain
 
 @MainActor
 final class GameViewModel: ObservableObject {
     // MARK: Params
     @Published var model: GameModel
     private weak var coordinator: GameCoordinator?
+    private var firebase: CFirebase = CFirebase()
     
     // MARK: Init
     init(dependencies: Dependencies) {
@@ -24,7 +27,25 @@ final class GameViewModel: ObservableObject {
         self.coordinator = dependencies.coordinator
     }
     
+    // MARK: - Network
+    func fetchGames() async {
+        model.state = .loading
+        do {
+            model.games = try await firebase.fetchGames()
+            model.state = .display
+        } catch {
+            model.state = .error
+        }
+    }
+    
     // MARK: - Modeling
+    func getGames() -> Binding<[Game]>  {
+        Binding(
+            get: { self.model.games },
+            set: { self.model.games = $0 }
+        )
+    }
+    
     func getState() -> Binding<RequestState> {
         Binding(
             get: { self.model.state },
@@ -44,14 +65,15 @@ final class GameViewModel: ObservableObject {
                         )])
                 loadingTextTypeWriter(at: position + 1)
             }
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                guard let self = self else { return }
-                withAnimation {
-                    model.state = .display
-                }
-            }
         }
+//        else {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+//                guard let self = self else { return }
+//                withAnimation {
+//                    model.state = .display
+//                }
+//            }
+//        }
     }
     
     // MARK: - Action
