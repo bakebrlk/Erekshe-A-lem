@@ -12,9 +12,11 @@ import Domain
 
 public final class CFirebase: Sendable {
     // MARK: - Params
+    public static let shared: CFirebase = .init()
     private let auth: CFirebaseAuth = CFirebaseAuth()
     private let fireStore: CFireStore = CFireStore()
-    public init() {}
+    private init() {}
+    
     
     // MARK: - Auth Functions
     public func signInWithEmail(
@@ -46,6 +48,14 @@ public final class CFirebase: Sendable {
 //    - Registry
     public func signUpEmail(email: String, password: String) async throws {
         try await auth.signUpEmail(email: email, password: password)
+    }
+    
+    public func isUserAuthenticated() -> Bool {
+        auth.isUserAuthenticated()
+    }
+    
+    public func signOut() throws {
+        try auth.signOut()
     }
     
     // MARK: - Firestore

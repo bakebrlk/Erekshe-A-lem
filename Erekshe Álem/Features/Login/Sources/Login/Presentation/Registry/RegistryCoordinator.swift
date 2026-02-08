@@ -24,8 +24,8 @@ public final class RegistryCoordinator: IDestinationCoordinator {
     
     public func navigate(to destination: LoginDestination) {
         switch destination {
-        case .registry:
-            ()
+            case .registry: ()
+            case .game: ()
         }
     }
     

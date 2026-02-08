@@ -10,11 +10,13 @@ import Nivelir
 import Router
 import Login
 import Game
+import PFirebase
 
 public final class AppRouter: IAppRouting {
     
     public let navigator: ScreenNavigator
     private let window: UIWindow
+    private let firebase: CFirebase = CFirebase.shared
     
     public init(window: UIWindow) {
         self.window = window
@@ -26,13 +28,14 @@ public final class AppRouter: IAppRouting {
     }
     
     public func start() {
-//        let loginCoordinator = LoginCoordinator(navigator: navigator, dependencies: .init())
-        let loginCoordinator = GameCoordinator(navigator: navigator)
+        let coordinator: ICoordinator  = firebase.isUserAuthenticated()
+        ? GameCoordinator(navigator: navigator)
+        : LoginCoordinator(navigator: navigator, dependencies: .init())
         
         navigator.navigate { route in
             route
                 .setRoot(
-                    to: loginCoordinator.asAnyScreen().withStackContainer(),
+                    to: coordinator.asAnyScreen().withStackContainer(),
                     animation: .none
                 )
                 .makeKeyAndVisible()

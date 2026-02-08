@@ -18,7 +18,7 @@ final class RegistryViewModel: ObservableObject {
     // MARK: Params
     @Published private var model: RegistryModel
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
-    private var firebase: CFirebase = CFirebase()
+    private var firebase: CFirebase = CFirebase.shared
     private weak var coordinator: RegistryCoordinator?
 
     // MARK: Init

@@ -19,7 +19,7 @@ final class GameViewModel: ObservableObject {
     // MARK: Params
     @Published var model: GameModel
     private weak var coordinator: GameCoordinator?
-    private var firebase: CFirebase = CFirebase()
+    private var firebase: CFirebase = CFirebase.shared
     
     // MARK: Init
     init(dependencies: Dependencies) {

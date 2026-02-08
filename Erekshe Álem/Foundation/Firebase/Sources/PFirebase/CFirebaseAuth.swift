@@ -54,6 +54,21 @@ public final class CFirebaseAuth: Sendable {
         )
         try await Auth.auth().signIn(with: credential)
     }
+    
+    // MARK: - User
+    func isUserAuthenticated() -> Bool {
+        return Auth.auth().currentUser != nil
+    }
+    
+    func signOut() throws {
+        do {
+            try Auth.auth().signOut()
+            print("✅ Successfully signed out")
+        } catch let signOutError as NSError {
+            print("❌ Error signing out: \(signOutError.localizedDescription)")
+            throw signOutError
+        }
+    }
 }
 
 // MARK: - Helper Functions

@@ -17,7 +17,7 @@ import GoogleSignIn
 final class LoginViewModel: ObservableObject {
     // MARK: Params
     @Published public var model: LoginModel
-    private var firebase: CFirebase = CFirebase()
+    private var firebase: CFirebase = CFirebase.shared
     private weak var coordinator: LoginCoordinator?
     
     let mainColor = Color(red: 119/255, green: 221/255, blue: 231/255)
@@ -122,6 +122,7 @@ final class LoginViewModel: ObservableObject {
                         rawNonce: nonce,
                         fullName: appleIDCredential.fullName
                     )
+                    coordinator?.navigate(to: .game)
                 } catch {
                     model.state = .error
                 }
@@ -157,6 +158,7 @@ final class LoginViewModel: ObservableObject {
             try await firebase.signInWithGoogle(idToken: idToken, accessToken: accessToken)
             
             model.state = .display
+            coordinator?.navigate(to: .game)
             print("🎉 Успешный вход через Google в Firebase!")
         } catch {
             print("❌ Ошибка при входе через Google: \(error.localizedDescription)")

@@ -15,6 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/hhru/Nivelir.git", from: "1.9.10"),
+        .package(path: "../../Core/CommonUI")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -23,6 +24,7 @@ let package = Package(
             name: "Router",
             dependencies: [
                 .product(name: "Nivelir", package: "nivelir"),
+                "CommonUI"
             ]
         ),
         .testTarget(
