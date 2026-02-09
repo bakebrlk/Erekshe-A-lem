@@ -21,7 +21,8 @@ let package = Package(
     dependencies: [
         .package(path: "../../Foundation/Firebase"),
         .package(path: "../../Core/CommonUI"),
-        .package(path: "../../Foundation/Router")
+        .package(path: "../../Foundation/Router"),
+        .package(path: "../../Presentation/AppCoordinator.swift")
     ],
     targets: [
         .target(
@@ -29,7 +30,8 @@ let package = Package(
             dependencies: [
                 .product(name: "PFirebase", package: "Firebase"),
                 "CommonUI",
-                "Router"
+                "Router",
+                "AppCoordinator.swift"
             ]
         ),
         .testTarget(

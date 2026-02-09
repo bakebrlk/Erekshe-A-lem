@@ -11,15 +11,17 @@ import Router
 import Login
 import Game
 import PFirebase
+import SwiftUI
 
 public final class AppRouter: IAppRouting {
     
     public let navigator: ScreenNavigator
     private let window: UIWindow
-    private let firebase: CFirebase = CFirebase.shared
-    
+    private let firebase: CFirebase
+
     public init(window: UIWindow) {
         self.window = window
+        self.firebase = CFirebase.shared
         
         window.rootViewController = UINavigationController()
         window.makeKeyAndVisible()
@@ -28,9 +30,7 @@ public final class AppRouter: IAppRouting {
     }
     
     public func start() {
-        let coordinator: ICoordinator  = firebase.isUserAuthenticated()
-        ? GameCoordinator(navigator: navigator)
-        : LoginCoordinator(navigator: navigator, dependencies: .init())
+        let coordinator: ICoordinator = AppCoordinator(navigator: navigator)
         
         navigator.navigate { route in
             route
@@ -43,4 +43,3 @@ public final class AppRouter: IAppRouting {
         }
     }
 }
-

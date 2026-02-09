@@ -9,13 +9,18 @@
 import Foundation
 import AuthenticationServices
 import Domain
+import SwiftUI
 
-public final class CFirebase: Sendable {
+public final class CFirebase: ObservableObject, @unchecked Sendable {
     // MARK: - Params
-    public static let shared: CFirebase = .init()
+    @ObservedObject public static var shared: CFirebase = .init()
     private let auth: CFirebaseAuth = CFirebaseAuth()
     private let fireStore: CFireStore = CFireStore()
-    private init() {}
+    @Published public var loggedIn: Bool = false
+
+    private init() {
+        self.loggedIn = auth.isUserAuthenticated()
+    }
     
     
     // MARK: - Auth Functions

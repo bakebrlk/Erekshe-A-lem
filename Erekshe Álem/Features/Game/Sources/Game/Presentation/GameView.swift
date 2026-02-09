@@ -26,10 +26,16 @@ public struct GameView: View {
     }
     
     public var body: some View {
-        switch viewModel.model.state {
-        case .loading: loadingView
-        case .display: displayBody
-        case .error: Text("")
+        VStack(spacing: .zero) {
+            switch viewModel.model.state {
+            case .loading: loadingView
+            case .display: displayBody
+            case .error: Text("")
+            }
+        }
+        .navigationBarBackButtonHidden()
+        .onAppear() {
+            viewModel.model.state = .loading
         }
     }
     
@@ -162,6 +168,20 @@ public struct GameView: View {
                     }
                     .frame(maxWidth: 90)
                     .clipped()
+                    
+                    Button {
+                        viewModel.navigateToProfile()
+                    } label: {
+                        Image(.dolphinProfile)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .frame(maxWidth: 50, maxHeight: 50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(.systemGray3),lineWidth: 3)
+                    )
+                    .cornerRadius(8, corners: .allCorners)
                 }
                 .padding(30)
                 

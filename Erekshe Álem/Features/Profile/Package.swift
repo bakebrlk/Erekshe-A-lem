@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "Game",
+    name: "Profile",
     platforms: [
         .iOS(.v16)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Game",
-            targets: ["Game"]
+            name: "Profile",
+            targets: ["Profile"]
         ),
     ],
     dependencies: [
@@ -20,24 +20,24 @@ let package = Package(
         .package(path: "../../Core/CommonUI"),
         .package(path: "../../Core/DesignSystem"),
         .package(path: "../../Foundation/Router"),
-        .package(path: "../../Features/Profile")
+        .package(path: "../../Features/Login"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Game",
+            name: "Profile",
             dependencies: [
                 .product(name: "PFirebase", package: "Firebase"),
                 "CommonUI",
                 "Router",
                 "DesignSystem",
-                "Profile"
+                "Login"
             ]
         ),
         .testTarget(
-            name: "GameTests",
-            dependencies: ["Game"]
+            name: "ProfileTests",
+            dependencies: ["Profile"]
         ),
     ]
 )

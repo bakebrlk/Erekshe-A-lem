@@ -1,20 +1,20 @@
 //
-//  Game
-//  GameCoordinatorCoordinator.swift
+//  Profile
+//  ProfileCoordinatorCoordinator.swift
 //
 //  Template created by bakebrlk.
-//  File created by bakebrlk on 09.01.2026.
+//  File created by bakebrlk on 09.02.2026.
 //  We'll make it work, and I believe you 🚀
 //
 
 import SwiftUI
 import Router
 import Nivelir
-import Profile
+import Login
 
-public final class GameCoordinator: IDestinationCoordinator {
+public final class ProfileCoordinator: IDestinationCoordinator {
 
-    public typealias Destination = GameDestination
+    public typealias Destination = ProfileDestination
     
     public let navigator: ScreenNavigator
     private let dependencies: Dependencies
@@ -25,14 +25,14 @@ public final class GameCoordinator: IDestinationCoordinator {
         self.dependencies = dependencies
     }
 
-    public func navigate(to destination: GameDestination) {
+    public func navigate(to destination: ProfileDestination) {
         switch destination {
-            case .profile: navigateToProfile()
+        case .signOut: navigateToLogin()
         }
     }
     
-    private func navigateToProfile() {
-        let coordinator = ProfileCoordinator(navigator: navigator)
+    private func navigateToLogin() {
+        let coordinator = LoginCoordinator(navigator: navigator)
         
         navigator.navigate { route in
             route
@@ -43,11 +43,11 @@ public final class GameCoordinator: IDestinationCoordinator {
     }
     
     public func makeView() -> AnyView {
-        return AnyView(GameView(dependencies: .init(coordinator: self)))
+        return AnyView(ProfileView(dependencies: .init(coordinator: self)))
     }
 }
 
-extension GameCoordinator {
+extension ProfileCoordinator {
     public struct Dependencies {
         
         public init(

@@ -14,6 +14,7 @@ import Domain
 struct GameModel {
     var state: RequestState = .loading
     var canForceUpdate: Bool = false
+    var allDataLoaded: Bool = false
     var loadingText: String = ""
     var loadingFullText: String = "Играй и развивайся с Блуми!"
     var games: [Game] = []

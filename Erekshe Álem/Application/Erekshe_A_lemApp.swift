@@ -2,6 +2,7 @@ import SwiftUI
 import Login
 import UIKit
 import CommonUI
+import PFirebase
 
 @main
 struct Erekshe_A_lemApp: App {
@@ -10,6 +11,7 @@ struct Erekshe_A_lemApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
                 .onAppear {
                     setupNavigation()
                 }

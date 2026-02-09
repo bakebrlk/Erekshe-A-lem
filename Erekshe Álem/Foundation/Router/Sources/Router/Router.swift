@@ -40,7 +40,10 @@ fileprivate struct HostingScreen: Screen {
         guard let coordinator else {
             return UIHostingController(rootView: AnyView(EmptyView()))
         }
-        return UIHostingController(rootView: coordinator.makeView())
+        return UIHostingController(
+            rootView: coordinator
+                .makeView()
+        )
     }
 }
 

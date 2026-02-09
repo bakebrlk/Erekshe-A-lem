@@ -25,11 +25,14 @@ public struct LoginView: View {
     }
     
     public var body: some View {
-        switch viewModel.model.state {
+        VStack(spacing: .zero) {
+            switch viewModel.model.state {
             case .display: displayBody
             case .loading: splashScreen
             case .error: Text("Error!!")
+            }
         }
+        .navigationBarBackButtonHidden()
     }
     
     private var splashScreen: some View {

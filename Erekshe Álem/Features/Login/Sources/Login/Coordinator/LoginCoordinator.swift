@@ -10,7 +10,6 @@
 import SwiftUI
 import Router
 import Nivelir
-import Game
 
 public final class LoginCoordinator: IDestinationCoordinator {
     
@@ -27,7 +26,7 @@ public final class LoginCoordinator: IDestinationCoordinator {
     public func navigate(to destination: LoginDestination) {
         switch destination {
             case .registry: navigateToRegistry()
-            case .game: navigateToGame()
+            case .app: navigateToApp()
         }
     }
     
@@ -45,14 +44,11 @@ public final class LoginCoordinator: IDestinationCoordinator {
                 .resolve()
         }
     }
-    
-    private func navigateToGame() {
-        let coordinator = GameCoordinator(navigator: navigator)
-        
+    private func navigateToApp() {        
         navigator.navigate { route in
             route
                 .top(.stack)
-                .push(coordinator.asAnyScreen())
+                .popToRoot()
                 .resolve()
         }
     }

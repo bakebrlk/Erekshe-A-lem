@@ -10,5 +10,5 @@
 import Foundation
 
 public enum GameDestination {
-    // Добавьте другие направления навигации здесь
+    case profile
 }

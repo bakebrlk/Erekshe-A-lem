@@ -122,7 +122,8 @@ final class LoginViewModel: ObservableObject {
                         rawNonce: nonce,
                         fullName: appleIDCredential.fullName
                     )
-                    coordinator?.navigate(to: .game)
+                    firebase.loggedIn = true
+                    coordinator?.navigate(to: .app)
                 } catch {
                     model.state = .error
                 }
@@ -158,7 +159,8 @@ final class LoginViewModel: ObservableObject {
             try await firebase.signInWithGoogle(idToken: idToken, accessToken: accessToken)
             
             model.state = .display
-            coordinator?.navigate(to: .game)
+            firebase.loggedIn = true
+            coordinator?.navigate(to: .app)
             print("🎉 Успешный вход через Google в Firebase!")
         } catch {
             print("❌ Ошибка при входе через Google: \(error.localizedDescription)")

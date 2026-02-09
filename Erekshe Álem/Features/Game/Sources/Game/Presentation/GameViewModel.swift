@@ -27,12 +27,17 @@ final class GameViewModel: ObservableObject {
         self.coordinator = dependencies.coordinator
     }
     
+    // MARK: - Navigate
+    func navigateToProfile() {
+        coordinator?.navigate(to: .profile)
+    }
+    
     // MARK: - Network
     func fetchGames() async {
         model.state = .loading
         do {
             model.games = try await firebase.fetchGames()
-            model.state = .display
+            model.allDataLoaded = true
         } catch {
             model.state = .error
         }
@@ -65,15 +70,18 @@ final class GameViewModel: ObservableObject {
                         )])
                 loadingTextTypeWriter(at: position + 1)
             }
+        } else if model.allDataLoaded {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                guard let self = self else { return }
+                withAnimation {
+                    model.state = .display
+                }
+                model.canForceUpdate = false
+                model.loadingText = ""
+            }
+        } else {
+            loadingTextTypeWriter(at: position + 1)
         }
-//        else {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-//                guard let self = self else { return }
-//                withAnimation {
-//                    model.state = .display
-//                }
-//            }
-//        }
     }
     
     // MARK: - Action

@@ -10,5 +10,5 @@
 import Foundation
 
 public enum LoginDestination {
-    case registry, game
+    case registry, app
 }
